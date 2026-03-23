@@ -1,4 +1,4 @@
-# End-to-end Customer Support Agent with AgentCore
+# End-to-end Customer Support Agent with AgentCore using Google ADK
 
 In this tutorial we will move a customer support agent from prototype to production using Amazon Bedrock AgentCore services.
 
