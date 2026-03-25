@@ -99,3 +99,5 @@
 - Osman Santos
 - David Kaleko
 - Diego Brasil
+- Dumitru Pascu (dumip)
+
