@@ -32,7 +32,6 @@ import argparse
 import json
 import os
 import random
-import sys
 import time
 import uuid
 
@@ -883,7 +882,8 @@ def cleanup_eval_resources():
         iam.delete_policy(PolicyArn=policy_arn)
         iam.delete_role(RoleName=role_name)
         print(f"✅ Deleted eval IAM role and policy")
-        delete_ssm(f"{EVAL_SSM_PREFIX}/runtime_execution_role_arn")
+        eval_ssm = f"{EVAL_SSM_PREFIX}/runtime_execution_role_arn"
+        delete_ssm(eval_ssm)
     except Exception as e:
         print(f"⚠️  IAM cleanup: {e}")
 

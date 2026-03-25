@@ -1,23 +1,23 @@
+import importlib.util
 import json
 import os
 import sys
 import time
 import uuid
-
 import streamlit as st
 from chat import ChatManager, invoke_endpoint_streaming
 from chat_utils import make_urls_clickable
 from streamlit_cognito_auth import CognitoAuthenticator
 
-# Get the current file's directory and add the project root to the Python path
+# Load utils from project root using importlib to avoid E402
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_dir, ".."))
-sys.path.append(project_root)
+utils_path = os.path.join(current_dir, "..", "utils.py")
+spec = importlib.util.spec_from_file_location("utils", utils_path)
+utils = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(utils)
 
-from utils import get_customer_support_secret
+secret = json.loads(utils.get_customer_support_secret())
 
-secret = get_customer_support_secret()
-secret = json.loads(secret)
 
 authenticator = CognitoAuthenticator(
     pool_id=secret["pool_id"],
