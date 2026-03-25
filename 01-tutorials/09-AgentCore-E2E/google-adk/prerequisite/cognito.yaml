@@ -33,7 +33,7 @@ Resources:
     Type: AWS::Cognito::UserPool
     Properties:
       UserPoolName: !Ref UserPoolName
-      MfaConfiguration: 'OFF'
+      MfaConfiguration: 'OPTIONAL'
       UsernameConfiguration:
         CaseSensitive: false
       UsernameAttributes:
@@ -65,7 +65,7 @@ Resources:
     Properties:
       ClientName: !Ref WebAppClientName
       UserPoolId: !Ref UserPool
-      GenerateSecret: false  # Don't use secret for SPA or web apps
+      GenerateSecret: false 
       AllowedOAuthFlows:
         - code
       AllowedOAuthScopes:
